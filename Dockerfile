@@ -1,7 +1,7 @@
 FROM php:7.1-fpm-alpine
-MAINTAINER Tom Richards <tom.r@delegator.com>
+LABEL maintainer="Tom Richards <tom.r@delegator.com>"
 
-# Install packages
+# Install packages, including runtime dependencies
 RUN apk add --update --no-cache \
   nginx nginx-mod-http-headers-more nginx-mod-http-geoip \
   bash runit \
@@ -10,7 +10,8 @@ RUN apk add --update --no-cache \
   redis \
   nodejs yarn \
   ruby ruby-dev ruby-rake \
-  sassc
+  sassc \
+  freetype icu libjpeg-turbo libmcrypt libpng libxml2 libxslt
 
 ENV EXTENSION_DEPS freetype-dev icu-dev libjpeg-turbo-dev libmcrypt-dev libpng-dev libxml2-dev libxslt-dev
 
@@ -28,8 +29,9 @@ RUN apk add --no-cache --virtual .ext-deps $EXTENSION_DEPS \
 # Configure nginx and php
 ENV PHP_LOG_STREAM="/var/log/php.log"
 RUN deluser xfs \
- && addgroup -S -g 33 http \
- && adduser -S -D -u 33 -G http -s /bin/bash http \
+ && deluser www-data \
+ && addgroup -S -g 33 www-data \
+ && adduser -S -D -u 33 -G www-data -s /bin/bash www-data \
  && rm -f /etc/nginx/conf.d/default.conf \
  && ln -sf /dev/stdout /var/log/nginx/access.log \
  && ln -sf /dev/stderr /var/log/nginx/error.log \
@@ -50,7 +52,7 @@ COPY src/wait-for-port /usr/local/bin/wait-for-port
 
 # Install config files and tester site
 COPY ./config/nginx /etc/nginx
-COPY ./config/php7 /etc/php7
+COPY ./config/php /usr/local/etc/php
 COPY ./config/services /services
 COPY ./tester /usr/share/nginx/tester
 
