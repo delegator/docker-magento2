@@ -5,7 +5,7 @@ LABEL maintainer="Tom Richards <tom.r@delegator.com>"
 RUN apk add --update --no-cache \
   nginx nginx-mod-http-headers-more nginx-mod-http-geoip \
   bash runit \
-  curl htop git libxml2-utils make vim wget \
+  curl htop git libxml2-utils make openssh vim wget \
   mysql-client \
   redis \
   nodejs yarn \
