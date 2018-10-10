@@ -10,7 +10,7 @@ Opinionated Magento 2 docker image.
 
 ## Included software
 
- - NGINX
+ - nginx
  - PHP 7.1 with FPM
 
 ## Extra bits
