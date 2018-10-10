@@ -1,5 +1,7 @@
 # docker-magento2
 
+[![Docker Automated build](https://img.shields.io/docker/automated/delegator/magento2.svg?style=flat-square)](https://hub.docker.com/r/delegator/magento2/)
+
 Opinionated Magento 2 docker image.
 
 ## Base image
