@@ -9,7 +9,6 @@ RUN apk add --update --no-cache \
   mysql-client \
   redis \
   nodejs yarn \
-  ruby ruby-dev ruby-rake \
   sassc \
   freetype icu libjpeg-turbo libmcrypt libpng libxml2 libxslt
 
@@ -47,8 +46,11 @@ RUN curl -sL https://files.magerun.net/n98-magerun2-2.2.0.phar -o /usr/local/bin
  && chmod +x /usr/local/bin/n98-magerun2 \
  && n98-magerun2 --version
 
-# Port helper
-COPY src/wait-for-port /usr/local/bin/wait-for-port
+# Install dockerize
+ENV DOCKERIZE_VERSION v0.6.1
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+  && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+  && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 # Install config files and tester site
 COPY ./config/nginx /etc/nginx

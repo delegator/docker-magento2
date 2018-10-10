@@ -15,9 +15,9 @@ Opinionated Magento 2 docker image.
 
  - Node.js
  - Redis
- - Ruby
  - runit
  - sassc
+ - dockerize
 
 ## Getting started
 
