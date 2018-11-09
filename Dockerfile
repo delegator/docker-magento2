@@ -3,7 +3,7 @@ LABEL maintainer="Tom Richards <tom.r@delegator.com>"
 
 # Install packages, including runtime dependencies
 RUN apk add --update --no-cache \
-  nginx nginx-mod-http-headers-more nginx-mod-http-geoip \
+  nginx nginx-mod-http-headers-more \
   bash runit \
   curl htop git libxml2-utils make openssh vim wget \
   mysql-client redis \
