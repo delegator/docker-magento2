@@ -12,11 +12,12 @@ Opinionated Magento 2 docker image.
 
  - nginx
  - PHP 7.1 with FPM
+ - Redis
+ - MySQL client
 
 ## Extra bits
 
  - Node.js
- - Redis
  - runit
  - sassc
  - dockerize
@@ -25,9 +26,9 @@ Opinionated Magento 2 docker image.
 
 ```sh-session
 # Build image
-$ rake build
+docker build -t delegator/magento2 .
 
-# Test image
-# Visit http://localhost:3000/
-$ rake test
+# Test image, visit http://magento2.local/
+cd /path/to/magento2/project
+docker run --init --rm -p 80:80 -v $(pwd)/var/www/magento2 delegator/magento2
 ```
