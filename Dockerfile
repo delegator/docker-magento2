@@ -12,8 +12,8 @@ RUN apk add --update --no-cache \
   freetype icu libjpeg-turbo libmcrypt libpng libxml2 libxslt
 
 # Configure msmtp
-RUN ln -s msmtp /usr/bin/sendmail \
- && unlink /usr/sbin/sendmail
+RUN unlink /usr/sbin/sendmail \
+ && ln -s /usr/bin/msmtp /usr/sbin/sendmail
 
 ENV EXTENSION_DEPS freetype-dev icu-dev libjpeg-turbo-dev libmcrypt-dev libpng-dev libxml2-dev libxslt-dev
 
@@ -61,9 +61,10 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
   && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
   && dockerize -version
 
-# Install config files and tester site
+# Install config files
 COPY ./config/nginx /etc/nginx
 COPY ./config/php /usr/local/etc/php
+COPY ./config/php-fpm.d /usr/local/etc/php-fpm.d
 COPY ./config/services /services
 
 # Test nginx configuration
