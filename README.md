@@ -14,6 +14,7 @@ Opinionated Magento 2 docker image.
  - PHP 7.1 with FPM
  - Redis
  - MySQL client
+ - msmtp, aliased as sendmail
 
 ## Extra bits
 
