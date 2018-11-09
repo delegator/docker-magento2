@@ -38,12 +38,12 @@ RUN deluser xfs \
  && mkfifo -m 777 $PHP_LOG_STREAM
 
 # Install composer
-RUN curl -sL https://getcomposer.org/download/1.7.2/composer.phar -o /usr/local/bin/composer \
+RUN curl -sL https://getcomposer.org/download/1.7.3/composer.phar -o /usr/local/bin/composer \
  && chmod +x /usr/local/bin/composer \
  && composer --version
 
 # Install n98-magerun2
-RUN curl -sL https://files.magerun.net/n98-magerun2-2.2.0.phar -o /usr/local/bin/n98-magerun2 \
+RUN curl -sL https://files.magerun.net/n98-magerun2-2.3.2.phar -o /usr/local/bin/n98-magerun2 \
  && chmod +x /usr/local/bin/n98-magerun2 \
  && n98-magerun2 --version
 
@@ -53,6 +53,9 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
   && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
   && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
   && dockerize -version
+
+# Install prestissimo
+RUN composer global require hirak/prestissimo
 
 # Install config files and tester site
 COPY ./config/nginx /etc/nginx
