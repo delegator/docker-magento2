@@ -48,6 +48,7 @@ RUN curl -sL https://getcomposer.org/download/1.7.3/composer.phar -o /usr/local/
 USER www-data
 RUN composer global require hirak/prestissimo
 USER root
+RUN composer global require hirak/prestissimo
 
 # Install n98-magerun2
 RUN curl -sL https://files.magerun.net/n98-magerun2-2.3.2.phar -o /usr/local/bin/n98-magerun2 \
