@@ -1,4 +1,4 @@
-FROM php:7.1-fpm-alpine
+FROM php:7.2-fpm-alpine
 LABEL maintainer="Tom Richards <tom.r@delegator.com>"
 
 # Install packages, including runtime dependencies
@@ -25,7 +25,8 @@ RUN apk add --no-cache --virtual .ext-deps $EXTENSION_DEPS \
  && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
  && pecl install xdebug-2.6.1 \
  && apk del .build-deps \
- && apk del .ext-deps
+ && apk del .ext-deps \
+ && rm -rf /tmp/pear
 
 # Add non-privileged web server user
 # Configure nginx and php
@@ -40,7 +41,7 @@ RUN deluser xfs \
  && mkfifo -m 777 $PHP_LOG_STREAM
 
 # Install composer
-RUN curl -sL https://getcomposer.org/download/1.7.3/composer.phar -o /usr/local/bin/composer \
+RUN curl -sL https://getcomposer.org/download/1.8.0/composer.phar -o /usr/local/bin/composer \
  && chmod +x /usr/local/bin/composer \
  && composer --version
 

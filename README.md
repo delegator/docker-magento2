@@ -2,7 +2,7 @@
 
 [![Docker Automated build](https://img.shields.io/docker/automated/delegator/magento2.svg?style=flat-square)](https://hub.docker.com/r/delegator/magento2/)
 
-Opinionated Magento 2 docker image.
+Opinionated docker image for Magento 2.3+.
 
 ## Base image
 
