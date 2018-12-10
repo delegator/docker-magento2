@@ -1,5 +1,9 @@
 FROM php:7.2-fpm-alpine
 LABEL maintainer="Tom Richards <tom.r@delegator.com>"
+LABEL org.label-schema.schema-version="1.0"
+LABEL org.label-schema.name="delegator/magento2"
+LABEL org.label-schema.description="Opinionated docker image for Magento 2.3+."
+LABEL org.label-schema.vcs-url="https://github.com/delegator/docker-magento2"
 
 # Install packages, including runtime dependencies
 RUN apk add --update --no-cache \
@@ -41,7 +45,8 @@ RUN deluser xfs \
  && mkfifo -m 777 $PHP_LOG_STREAM
 
 # Install composer
-RUN curl -sL https://getcomposer.org/download/1.8.0/composer.phar -o /usr/local/bin/composer \
+ENV COMPOSER_VERSION 1.8.0
+RUN curl -sL https://getcomposer.org/download/$COMPOSER_VERSION/composer.phar -o /usr/local/bin/composer \
  && chmod +x /usr/local/bin/composer \
  && composer --version
 
@@ -52,7 +57,8 @@ USER root
 RUN composer global require hirak/prestissimo
 
 # Install n98-magerun2
-RUN curl -sL https://files.magerun.net/n98-magerun2-2.3.2.phar -o /usr/local/bin/n98-magerun2 \
+ENV MAGERUN2_VERSION 3.0.1
+RUN curl -sL https://files.magerun.net/n98-magerun2-$MAGERUN2_VERSION.phar -o /usr/local/bin/n98-magerun2 \
  && chmod +x /usr/local/bin/n98-magerun2 \
  && n98-magerun2 --version
 
