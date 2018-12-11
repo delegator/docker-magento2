@@ -23,7 +23,7 @@ ENV EXTENSION_DEPS freetype-dev icu-dev libjpeg-turbo-dev libmcrypt-dev libpng-d
 
 # Install build dependencies and PHP extensions
 RUN apk add --no-cache --virtual .ext-deps $EXTENSION_DEPS \
- && docker-php-ext-install -j$(nproc) bcmath intl opcache pdo_mysql soap xsl zip \
+ && docker-php-ext-install -j$(nproc) bcmath intl mcrypt opcache pdo_mysql soap xsl zip \
  && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
  && docker-php-ext-install -j$(nproc) gd \
  && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
