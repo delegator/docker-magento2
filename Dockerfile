@@ -52,9 +52,11 @@ RUN curl -sL https://getcomposer.org/download/$COMPOSER_VERSION/composer.phar -o
 
 # Install prestissimo for parallel composer downloads
 USER www-data
-RUN composer global require hirak/prestissimo
+RUN composer global require hirak/prestissimo \
+ && rm -rf /var/www/.composer/cache
 USER root
-RUN composer global require hirak/prestissimo
+RUN composer global require hirak/prestissimo \
+ && rm -rf /root/.composer/cache
 
 # Install n98-magerun2
 ENV MAGERUN2_VERSION 3.0.1
