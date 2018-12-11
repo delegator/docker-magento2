@@ -1,8 +1,8 @@
-FROM php:7.2-fpm-alpine
+FROM php:7.1-fpm-alpine
 LABEL maintainer="Tom Richards <tom.r@delegator.com>"
 LABEL org.label-schema.schema-version="1.0"
 LABEL org.label-schema.name="delegator/magento2"
-LABEL org.label-schema.description="Opinionated docker image for Magento 2.3+."
+LABEL org.label-schema.description="Opinionated docker image for Magento 2.2+."
 LABEL org.label-schema.vcs-url="https://github.com/delegator/docker-magento2"
 
 # Install packages, including runtime dependencies
