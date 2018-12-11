@@ -31,5 +31,5 @@ docker build -t delegator/magento2 .
 
 # Test image, visit http://magento2.local/
 cd /path/to/magento2/project
-docker run --init --rm -p 80:80 -v $(pwd)/var/www/magento2 delegator/magento2
+docker run --init --rm -p 80:80 -v $(pwd):/var/www/magento2 delegator/magento2
 ```

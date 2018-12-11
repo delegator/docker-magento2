@@ -12,7 +12,8 @@ RUN apk add --update --no-cache \
   curl htop git libxml2-utils make openssh vim wget \
   mysql-client redis \
   nodejs sassc yarn \
-  msmtp procps \
+  msmtp \
+  procps patch \
   freetype icu libjpeg-turbo libmcrypt libpng libxml2 libxslt
 
 # Configure msmtp
